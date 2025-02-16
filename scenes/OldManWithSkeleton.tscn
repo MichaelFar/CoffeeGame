@@ -119,6 +119,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 4)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 axis_lock_angular_x = true
+axis_lock_angular_y = true
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D"]
 transform = Transform3D(1, -1.81347e-05, 1.30385e-07, 1.81347e-05, 1, 5.4948e-07, -2.34693e-07, -5.32717e-07, 1, -0.126892, 159.406, 2.3365e-05)
@@ -131,12 +132,14 @@ shape = SubResource("CapsuleShape3D_6fkpk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" node_paths=PackedStringArray("objectToFollow")]
 transform = Transform3D(1, -2.46018e-05, -4.47035e-07, 2.45869e-05, 1, 4.47035e-08, -1.49012e-07, -1.11759e-08, 1, -41.9993, 87.3617, -1.90735e-06)
 shape = SubResource("CapsuleShape3D_6fkpk")
+disabled = true
 script = ExtResource("3_bdo0o")
 objectToFollow = NodePath("../Skeleton3D/Jigglebone7")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D" node_paths=PackedStringArray("objectToFollow")]
 transform = Transform3D(-0.685023, -0.103278, 0.721165, -0.0516205, 0.994294, 0.0933598, -0.726691, 0.0267266, -0.686444, 43.3439, 87.9512, -1.00897)
 shape = SubResource("CapsuleShape3D_6fkpk")
+disabled = true
 script = ExtResource("3_bdo0o")
 objectToFollow = NodePath("../Skeleton3D/Jigglebone8")
 
@@ -442,7 +445,7 @@ mesh = ExtResource("1_dftq8")
 skin = SubResource("Skin_sbnu0")
 
 [node name="Jigglebone" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(0.989831, -0.0152454, 0.141433, 0.01299, 0.999773, 0.0168562, -0.141658, -0.0148475, 0.989804, 15.0816, 158.916, 13.0006)
+transform = Transform3D(0.98983, -0.0152473, 0.141435, 0.0129881, 0.999773, 0.0168825, -0.14166, -0.0148738, 0.989803, 15.0816, 158.916, 13.0006)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigHead"
@@ -450,7 +453,7 @@ stiffness = 0.1
 damping = 15.2
 
 [node name="Jigglebone3" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(0.0707985, -0.482759, 0.872887, -0.099269, -0.874149, -0.475405, 0.992538, -0.0529926, -0.109811, -1.58785, 144.666, 9.23653)
+transform = Transform3D(0.0708021, -0.482754, 0.872889, -0.0992552, -0.874152, -0.475401, 0.99254, -0.0529794, -0.109808, -1.58786, 144.666, 9.23652)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigRightArm"
@@ -460,7 +463,7 @@ use_gravity = true
 forward_axis = 1
 
 [node name="Jigglebone4" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(0.00965243, 0.484027, -0.875, 0.0998887, -0.871131, -0.480784, -0.994952, -0.0827619, -0.0567573, 31.9466, 144.699, 8.2506)
+transform = Transform3D(0.00965142, 0.48408, -0.87497, 0.0998881, -0.871101, -0.480838, -0.994952, -0.0827584, -0.0567611, 31.9467, 144.699, 8.2506)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigLeftArm"
@@ -470,7 +473,7 @@ use_gravity = true
 forward_axis = 1
 
 [node name="Jigglebone5" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(0.0897661, -0.249323, 0.964251, -0.051324, -0.968031, -0.245522, 0.994639, -0.0274496, -0.0996927, -15.5267, 119.426, 7.70635)
+transform = Transform3D(0.0897677, -0.249373, 0.964238, -0.0513482, -0.968018, -0.24557, 0.994638, -0.0274676, -0.0997017, -15.5268, 119.426, 7.70635)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigRightForeArm"
@@ -480,7 +483,7 @@ use_gravity = true
 forward_axis = 1
 
 [node name="Jigglebone6" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(0.0288097, 0.250227, -0.967758, 0.0517487, -0.967235, -0.248551, -0.998244, -0.0429196, -0.0408146, 45.923, 119.546, 5.86058)
+transform = Transform3D(0.0288694, 0.250068, -0.967798, 0.0516132, -0.967283, -0.248396, -0.99825, -0.04278, -0.0408318, 45.9241, 119.546, 5.86069)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigLeftForeArm"
@@ -490,7 +493,7 @@ use_gravity = true
 forward_axis = 1
 
 [node name="Jigglebone7" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(0.556704, -0.0454392, 0.829467, -0.0446194, -0.998697, -0.0247631, 0.829512, -0.0232246, -0.558006, -22.2023, 93.5101, 6.97314)
+transform = Transform3D(0.556697, -0.0451365, 0.829489, -0.0448211, -0.9987, -0.0242632, 0.829506, -0.0236714, -0.557996, -22.2025, 93.5103, 6.97293)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigRightHand"
@@ -500,7 +503,7 @@ use_gravity = true
 forward_axis = 1
 
 [node name="Jigglebone8" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(0.442039, 0.135121, -0.88676, 0.0747715, -0.990699, -0.113686, -0.893874, -0.0160507, -0.44803, 52.6223, 93.6513, 4.71444)
+transform = Transform3D(0.441696, 0.134919, -0.886962, 0.076673, -0.990687, -0.112515, -0.893882, -0.0183088, -0.447927, 52.6192, 93.6508, 4.71426)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigLeftHand"
@@ -510,10 +513,15 @@ use_gravity = true
 forward_axis = 1
 
 [node name="Jigglebone2" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(0.999499, 0.00399878, 0.0313891, 0.00149097, 0.984929, -0.17295, -0.0316076, 0.17291, 0.98443, 14.9933, 113.507, 2.33549)
+transform = Transform3D(0.999499, 0.00399863, 0.031388, 0.0014909, 0.98493, -0.172949, -0.0316065, 0.172909, 0.98443, 14.9933, 113.507, 2.33549)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigSpine"
 
 [node name="JoltPinJoint3D" type="JoltPinJoint3D" parent="RigidBody3D"]
 node_b = NodePath("..")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 93.2219, 0)
+
+[node name="JoltPinJoint3D2" type="JoltPinJoint3D" parent="RigidBody3D"]
+node_b = NodePath("..")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.361481, 0)
