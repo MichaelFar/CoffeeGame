@@ -46,7 +46,6 @@ data = PackedVector3Array(-10, 3.5, 0.5, 10, 3.5, 0.5, -10, -3.5, 0.5, 10, 3.5, 
 data = PackedVector3Array(-10, 3.5, 0.5, 10, 3.5, 0.5, -10, -3.5, 0.5, 10, 3.5, 0.5, 10, -3.5, 0.5, -10, -3.5, 0.5, 10, 3.5, -0.5, -10, 3.5, -0.5, 10, -3.5, -0.5, -10, 3.5, -0.5, -10, -3.5, -0.5, 10, -3.5, -0.5, 10, 3.5, 0.5, 10, 3.5, -0.5, 10, -3.5, 0.5, 10, 3.5, -0.5, 10, -3.5, -0.5, 10, -3.5, 0.5, -10, 3.5, -0.5, -10, 3.5, 0.5, -10, -3.5, -0.5, -10, 3.5, 0.5, -10, -3.5, 0.5, -10, -3.5, -0.5, 10, 3.5, 0.5, -10, 3.5, 0.5, 10, 3.5, -0.5, -10, 3.5, 0.5, -10, 3.5, -0.5, 10, 3.5, -0.5, -10, -3.5, 0.5, 10, -3.5, 0.5, -10, -3.5, -0.5, 10, -3.5, 0.5, 10, -3.5, -0.5, -10, -3.5, -0.5)
 
 [node name="TestScene" type="Node3D"]
-transform = Transform3D(27.9411, 0, 0, 0, 27.9411, 0, 0, 0, 27.9411, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -62,12 +61,6 @@ mesh = SubResource("PlaneMesh_t02hq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_5mc13")
-
-[node name="ProtoController" parent="." instance=ExtResource("1_4c46g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-
-[node name="Camera3D" parent="ProtoController/Head" index="0"]
-fov = 90.0
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46444, 0.202113, 0.134488)
@@ -104,6 +97,7 @@ transform = Transform3D(0.999993, 0, -0.00376999, 0, 1, 0, 0.00376999, 0, 0.9999
 shape = SubResource("ConcavePolygonShape3D_cqie4")
 
 [node name="Node" parent="." instance=ExtResource("2_j33o6")]
-transform = Transform3D(0.0345701, 0.00926302, 0, -0.00926302, 0.0345701, 0, 0, 0, 0.0357896, -6.15315, 2.89896, -2.89959)
+transform = Transform3D(0.0357896, 0, 0, 0, 0.0357896, 0, 0, 0, 0.0357896, -2.87588, 0, -2.27454)
 
-[editable path="ProtoController"]
+[node name="ProtoController" parent="." instance=ExtResource("1_4c46g")]
+transform = Transform3D(0.0357896, 0, 0, 0, 0.0357896, 0, 0, 0, 0.0357896, -2.86479, 1.68, 2.23862)

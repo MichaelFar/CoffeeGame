@@ -5,6 +5,10 @@
 
 extends CharacterBody3D
 
+enum playerStates {MOVESTATE, HANDSTATE} 
+
+var playerCurrentState = playerStates.MOVESTATE
+
 ## Can we move around?
 @export var can_move : bool = true
 ## Are we affected by gravity?
@@ -50,25 +54,39 @@ var move_speed : float = 0.0
 var freeflying : bool = false
 
 ## IMPORTANT REFERENCES
-@onready var head: Node3D = $Head
-@onready var collider: CollisionShape3D = $Collider
+@export var head: Node3D
+@export var collider: CollisionShape3D
+@export var hand : Node3D
 
 func _ready() -> void:
+	toggleDisableAndHideHand()
 	check_input_mappings()
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && playerCurrentState != playerStates.HANDSTATE:
 		capture_mouse()
 	if Input.is_key_pressed(KEY_ESCAPE):
 		release_mouse()
 	
 	# Look around
-	if mouse_captured and event is InputEventMouseMotion:
-		rotate_look(event.relative)
-	
+	if(playerCurrentState == playerStates.MOVESTATE):
+		if mouse_captured and event is InputEventMouseMotion:
+			rotate_look(event.relative)
+	if(Input.is_action_just_pressed("HandMode")):
+		
+		if(playerCurrentState == playerStates.MOVESTATE):
+			playerCurrentState = playerStates.HANDSTATE
+			toggleDisableAndHideHand()
+			release_mouse()
+		else:
+			capture_mouse()
+			
+			toggleDisableAndHideHand()
+			playerCurrentState = playerStates.MOVESTATE
+		
 	# Toggle freefly mode
 	if can_freefly and Input.is_action_just_pressed(input_freefly):
 		if not freeflying:
@@ -102,17 +120,18 @@ func _physics_process(delta: float) -> void:
 		move_speed = base_speed
 
 	# Apply desired movement to velocity
-	if can_move:
+	if can_move && playerCurrentState == playerStates.MOVESTATE:
 		var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)
 		var move_dir := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if move_dir:
 			velocity.x = move_dir.x * move_speed
-			velocity.z = move_dir.z * move_speed
+			velocity.z = move_dir.z * move_speed	
 		else:
 			velocity.x = move_toward(velocity.x, 0, move_speed)
 			velocity.z = move_toward(velocity.z, 0, move_speed)
 	else:
-		velocity.x = 0
+		velocity.x = move_toward(velocity.x, 0, move_speed)
+		velocity.z = move_toward(velocity.z, 0, move_speed)
 		velocity.y = 0
 	
 	# Use velocity to actually move
@@ -151,6 +170,11 @@ func release_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_captured = false
 
+func toggleDisableAndHideHand():
+	
+	hand.visible = !hand.visible
+	
+	hand.toggleCollision()
 
 ## Checks if some Input Actions haven't been created.
 ## Disables functionality accordingly.

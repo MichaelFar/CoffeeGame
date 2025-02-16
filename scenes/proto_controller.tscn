@@ -1,32 +1,54 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs72ogkvdd7d6"]
+[gd_scene load_steps=7 format=3 uid="uid://bs72ogkvdd7d6"]
 
 [ext_resource type="Script" path="res://scripts/proto_controller.gd" id="1_ucva2"]
+[ext_resource type="PackedScene" uid="uid://c0c0yl88scsjw" path="res://scenes/arm_container.tscn" id="2_7056k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ucva2"]
-radius = 0.4
-height = 1.8
+radius = 43.489
+height = 216.765
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iof21"]
-radius = 0.4
-height = 1.8
+[sub_resource type="BoxShape3D" id="BoxShape3D_rmrhr"]
+size = Vector3(906, 1, 448)
 
-[node name="ProtoController" type="CharacterBody3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aspql"]
+radius = 23.4714
+height = 46.9427
+
+[node name="ProtoController" type="CharacterBody3D" node_paths=PackedStringArray("head", "collider", "hand")]
 script = ExtResource("1_ucva2")
+base_speed = 240.0
+head = NodePath("Head")
+collider = NodePath("CollisionShape3D")
+hand = NodePath("Head/ArmContainer")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 101.647, 0)
 material_override = SubResource("StandardMaterial3D_iof21")
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_ucva2")
 
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21296, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 167.213, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.351608)
 
-[node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-shape = SubResource("CapsuleShape3D_iof21")
+[node name="ArmContainer" parent="Head" node_paths=PackedStringArray("camera") instance=ExtResource("2_7056k")]
+transform = Transform3D(-6.70692e-07, 0, -7.67182, 0, 7.67182, 0, 7.67182, 0, -6.70692e-07, 0, 0, 0)
+camera = NodePath("../Camera3D")
+
+[node name="RayCastTarget" type="Area3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -82.4234, -345.267)
+collision_layer = 3
+collision_mask = 2
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Head/RayCastTarget"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -10.6146, 153.094, 272.82)
+shape = SubResource("BoxShape3D_rmrhr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.4748, 0)
+shape = SubResource("CapsuleShape3D_aspql")
