@@ -401,7 +401,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e57ed"]
-radius = 5.0
+radius = 1.8709
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vy1ek"]
 data = PackedVector3Array(500, 0, 500, -500, 0, 500, 500, 0, -500, -500, 0, 500, -500, 0, -500, 500, 0, -500)
@@ -760,10 +760,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1948, 1.29644, 0)
 shape = SubResource("SphereShape3D_e57ed")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.997472, 1.18387e-08, -0.0710621, -0.0216678, 0.95238, 0.304143, 0.0676781, 0.304914, -0.949972, -12, 147.771, -175.825)
+transform = Transform3D(-0.997472, 2.11284e-08, -0.0710621, -0.0216678, 0.95238, 0.304143, 0.0676781, 0.304914, -0.949972, -23.4741, 147.771, -76.8316)
 fov = 30.5
 
 [node name="RayCastTarget" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28.9726)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="RayCastTarget"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.385444, 0.0942016, 1.82045)
@@ -780,30 +781,30 @@ mesh = SubResource("PlaneMesh_57eee")
 shape = SubResource("WorldBoundaryShape3D_nlapx")
 
 [node name="Node" parent="." instance=ExtResource("3_se3og")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -25, -38, 82)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -25, -38, 104.996)
 
 [node name="Jigglebone" parent="Node/RigidBody3D/Skeleton3D" index="1"]
-transform = Transform3D(-0.991683, 0.0118266, -0.128162, 0.0125876, 0.999908, -0.00512938, 0.12809, -0.00669998, -0.99174, -25.1055, 120.958, 73.0159)
+transform = Transform3D(-0.992124, 0.0110018, -0.12478, 0.0124414, 0.999865, -0.0107636, 0.124645, -0.0122313, -0.992126, -25.1118, 120.969, 96.0159)
 
 [node name="Jigglebone3" parent="Node/RigidBody3D/Skeleton3D" index="2"]
-transform = Transform3D(-0.171891, 0.487518, -0.856026, 0.000104167, -0.86895, -0.494899, -0.985116, -0.0851578, 0.149314, -8.41559, 106.695, 76.5262)
+transform = Transform3D(-0.196681, 0.489475, -0.849548, 0.0235589, -0.863863, -0.503176, -0.980184, -0.11898, 0.158374, -8.41655, 106.71, 99.4655)
 
 [node name="Jigglebone4" parent="Node/RigidBody3D/Skeleton3D" index="3"]
-transform = Transform3D(0.563959, -0.544638, 0.620741, 0.480757, -0.394633, -0.783031, 0.671433, 0.740023, 0.0392824, -41.936, 107.598, 78.7443)
+transform = Transform3D(0.620315, -0.569135, 0.539718, 0.46707, -0.28477, -0.837109, 0.630123, 0.771357, 0.0891782, -41.9365, 107.784, 101.742)
 
 [node name="Jigglebone5" parent="Node/RigidBody3D/Skeleton3D" index="4"]
-transform = Transform3D(-0.525385, 0.391881, -0.755248, 0.547647, -0.523583, -0.652643, -0.651194, -0.756498, 0.0604699, 5.74332, 82.734, 73.0767)
+transform = Transform3D(-0.553359, 0.402749, -0.7291, 0.547869, -0.483341, -0.682804, -0.627403, -0.777287, 0.0468074, 5.81605, 82.958, 95.0528)
 
 [node name="Jigglebone6" parent="Node/RigidBody3D/Skeleton3D" index="5"]
-transform = Transform3D(0.807791, -0.556242, 0.195112, 0.461967, 0.391785, -0.79567, 0.366143, 0.73287, 0.573446, -58.0562, 98.0356, 99.6461)
+transform = Transform3D(0.800832, -0.59652, 0.0532209, 0.41621, 0.490455, -0.765652, 0.430624, 0.635309, 0.64105, -58.8197, 101.263, 123.243)
 
 [node name="Jigglebone7" parent="Node/RigidBody3D/Skeleton3D" index="6"]
-transform = Transform3D(-0.917719, 0.285891, -0.275786, 0.28295, -0.0168139, -0.958987, -0.278803, -0.958114, -0.0654623, 16.43, 69.4752, 52.7701)
+transform = Transform3D(-0.926402, 0.300539, -0.226839, 0.246475, 0.0285822, -0.968728, -0.284657, -0.953341, -0.100554, 16.8092, 70.8289, 74.178)
 
 [node name="Jigglebone8" parent="Node/RigidBody3D/Skeleton3D" index="7"]
-transform = Transform3D(0.831796, -0.521807, 0.189296, 0.553596, 0.804773, -0.214175, -0.0405818, 0.282943, 0.958277, -73.3813, 109.597, 118.198)
+transform = Transform3D(0.834169, -0.551401, 0.0109244, 0.547225, 0.825062, -0.140773, 0.0686091, 0.123407, 0.989981, -75.2088, 115.26, 138.996)
 
 [node name="Jigglebone2" parent="Node/RigidBody3D/Skeleton3D" index="8"]
-transform = Transform3D(-0.9995, -0.00399812, -0.0313837, 0.00149061, 0.98493, -0.172948, 0.0316022, -0.172908, -0.984431, -24.9933, 75.5074, 83.6645)
+transform = Transform3D(-0.999499, -0.00399867, -0.0313879, 0.00149078, 0.98493, -0.172947, 0.0316064, -0.172907, -0.984431, -24.9933, 75.5074, 106.661)
 
 [editable path="Node"]
