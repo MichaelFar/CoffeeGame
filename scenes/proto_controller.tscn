@@ -14,12 +14,15 @@ height = 216.765
 size = Vector3(906, 1, 448)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aspql"]
-radius = 23.4714
+radius = 23.4713
 height = 46.9427
 
 [node name="ProtoController" type="CharacterBody3D" node_paths=PackedStringArray("head", "collider", "hand")]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_ucva2")
 base_speed = 240.0
+jump_velocity = 30.0
 head = NodePath("Head")
 collider = NodePath("CollisionShape3D")
 hand = NodePath("Head/ArmContainer")

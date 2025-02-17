@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjndm27gg6up5"]
+[gd_scene load_steps=11 format=3 uid="uid://bjndm27gg6up5"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://scenes/proto_controller.tscn" id="1_8rbn8"]
 [ext_resource type="PackedScene" uid="uid://cq4xata7413le" path="res://scenes/OldManWithSkeleton.tscn" id="2_qqpud"]
+[ext_resource type="PackedScene" uid="uid://bsc2y3urt12qs" path="res://scenes/soft_body_old_man.tscn" id="3_dumkt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nkjsk"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -21,6 +22,12 @@ glow_enabled = true
 [sub_resource type="PlaneMesh" id="PlaneMesh_4hywm"]
 size = Vector2(2000, 2000)
 
+[sub_resource type="BoxMesh" id="BoxMesh_pfcsl"]
+size = Vector3(3000, 3000, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ygnbf"]
+data = PackedVector3Array(-1500, 1500, 0.5, 1500, 1500, 0.5, -1500, -1500, 0.5, 1500, 1500, 0.5, 1500, -1500, 0.5, -1500, -1500, 0.5, 1500, 1500, -0.5, -1500, 1500, -0.5, 1500, -1500, -0.5, -1500, 1500, -0.5, -1500, -1500, -0.5, 1500, -1500, -0.5, 1500, 1500, 0.5, 1500, 1500, -0.5, 1500, -1500, 0.5, 1500, 1500, -0.5, 1500, -1500, -0.5, 1500, -1500, 0.5, -1500, 1500, -0.5, -1500, 1500, 0.5, -1500, -1500, -0.5, -1500, 1500, 0.5, -1500, -1500, 0.5, -1500, -1500, -0.5, 1500, 1500, 0.5, -1500, 1500, 0.5, 1500, 1500, -0.5, -1500, 1500, 0.5, -1500, 1500, -0.5, 1500, 1500, -0.5, -1500, -1500, 0.5, 1500, -1500, 0.5, -1500, -1500, -0.5, 1500, -1500, 0.5, 1500, -1500, -0.5, -1500, -1500, -0.5)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -31,6 +38,8 @@ shadow_enabled = true
 environment = SubResource("Environment_wdon0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_2mcmm")
@@ -43,6 +52,53 @@ mesh = SubResource("PlaneMesh_4hywm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 21.2482, -1)
 
 [node name="Node" parent="." instance=ExtResource("2_qqpud")]
-transform = Transform3D(-0.959358, 0, -0.282191, 0, 1, 0, 0.282191, 0, -0.959358, 9.82062, 6.10352e-05, 260.594)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 168, 0, -388)
+
+[node name="SoftBodyOldMan" parent="." instance=ExtResource("3_dumkt")]
+transform = Transform3D(0.999999, -0.00113384, 0.000942677, 0.0011341, 0.999999, -0.000280058, -0.000942359, 0.000281127, 1, -152.419, 0, -214.037)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 339.976, 226.033, -598.971)
+mesh = SubResource("BoxMesh_pfcsl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ygnbf")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 339.976, 226.033, 701.029)
+mesh = SubResource("BoxMesh_pfcsl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ygnbf")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 738.976, 226.033, 701.029)
+mesh = SubResource("BoxMesh_pfcsl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ygnbf")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -847.024, 226.033, 701.029)
+mesh = SubResource("BoxMesh_pfcsl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D5"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D5/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ygnbf")
 
 [editable path="ProtoController"]
