@@ -75,17 +75,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if(playerCurrentState == playerStates.MOVESTATE):
 		if mouse_captured and event is InputEventMouseMotion:
 			rotate_look(event.relative)
-	if(Input.is_action_just_pressed("HandMode")):
-		
-		if(playerCurrentState == playerStates.MOVESTATE):
-			playerCurrentState = playerStates.HANDSTATE
-			toggleDisableAndHideHand()
-			release_mouse()
-		else:
-			capture_mouse()
-			
-			toggleDisableAndHideHand()
-			playerCurrentState = playerStates.MOVESTATE
+	
 		
 	# Toggle freefly mode
 	if can_freefly and Input.is_action_just_pressed(input_freefly):
@@ -120,7 +110,7 @@ func _physics_process(delta: float) -> void:
 		move_speed = base_speed
 
 	# Apply desired movement to velocity
-	if can_move && playerCurrentState == playerStates.MOVESTATE:
+	if can_move:# && playerCurrentState == playerStates.MOVESTATE:
 		var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)
 		var move_dir := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if move_dir:
@@ -133,6 +123,18 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, move_speed)
 		velocity.z = move_toward(velocity.z, 0, move_speed)
 		velocity.y = 0
+	
+	if(Input.is_action_just_pressed("HandMode")):
+		
+		if(playerCurrentState == playerStates.MOVESTATE):
+			playerCurrentState = playerStates.HANDSTATE
+			toggleDisableAndHideHand()
+			release_mouse()
+		else:
+			capture_mouse()
+			
+			toggleDisableAndHideHand()
+			playerCurrentState = playerStates.MOVESTATE
 	
 	# Use velocity to actually move
 	move_and_slide()

@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://cq4xata7413le"]
+[gd_scene load_steps=9 format=3 uid="uid://cq4xata7413le"]
 
 [ext_resource type="ArrayMesh" uid="uid://bq1erhd88ptf4" path="res://models/old_man.tres" id="1_dftq8"]
+[ext_resource type="Script" path="res://scripts/customer_controller.gd" id="1_vimg0"]
+[ext_resource type="Script" path="res://scripts/grabbableObject.gd" id="2_7ogo7"]
 [ext_resource type="Script" path="res://addons/jigglebones/jigglebone.gd" id="2_nl3gy"]
-[ext_resource type="Script" path="res://scripts/followObject.gd" id="3_bdo0o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gnm1n"]
 friction = 0.0
 bounce = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6fkpk"]
-radius = 10.4939
-height = 51.2615
+radius = 0.10106
+height = 0.355031
 
 [sub_resource type="Skin" id="Skin_sbnu0"]
 resource_name = "Skin"
@@ -118,41 +119,36 @@ bind/33/name = &"mixamorigRightHandThumb3"
 bind/33/bone = -1
 bind/33/pose = Transform3D(0.627911, -0.0470949, 0.776859, -0.358157, -0.90368, 0.234704, 0.690978, -0.425611, -0.584298, 46.4703, 70.3225, 96.4197)
 
-[node name="Node" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rdcc5"]
+radius = 0.644621
+height = 1.322
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("rigidBodyToGrab")]
 collision_layer = 3
 collision_mask = 3
-axis_lock_angular_x = true
 axis_lock_angular_y = true
-mass = 1000.0
 physics_material_override = SubResource("PhysicsMaterial_gnm1n")
+script = ExtResource("2_7ogo7")
+rigidBodyToGrab = NodePath(".")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D" node_paths=PackedStringArray("objectToFollow")]
-transform = Transform3D(1, -1.81347e-05, 1.30385e-07, 1.81347e-05, 1, 5.4948e-07, -2.34693e-07, -5.32717e-07, 1, -0.126892, 159.406, 2.3365e-05)
-shape = SubResource("CapsuleShape3D_6fkpk")
-script = ExtResource("3_bdo0o")
-objectToFollow = NodePath("../Skeleton3D/JiggleHead")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(1, -1.81347e-05, 1.30385e-07, 1.81347e-05, 1, 5.4948e-07, -2.34693e-07, -5.32717e-07, 1, -0.126892, -0.891861, 2.3365e-05)
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, -1.81347e-05, 1.30385e-07, 1.81347e-05, 1, 5.4948e-07, -2.34693e-07, -5.32717e-07, 1, 0.00399223, 0.119682, 2.3365e-05)
 shape = SubResource("CapsuleShape3D_6fkpk")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(1, -2.46018e-05, -4.47035e-07, 2.45869e-05, 1, 4.47035e-08, -1.49012e-07, -1.11759e-08, 1, -41.9993, 87.3617, -1.90735e-06)
-shape = SubResource("CapsuleShape3D_6fkpk")
-disabled = true
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(-0.685023, -0.103278, 0.721165, -0.0516205, 0.994294, 0.0933598, -0.726691, 0.0267266, -0.686444, 43.3439, 87.9512, -1.00897)
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, -1.81347e-05, 1.30385e-07, 1.81347e-05, 1, 5.4948e-07, -2.34701e-07, -5.32949e-07, 1, 0, 1.67059, 0)
 shape = SubResource("CapsuleShape3D_6fkpk")
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(1, -2.46018e-05, -4.47035e-07, 2.45869e-05, 1, 4.47035e-08, -1.49012e-07, -1.11759e-08, 1, -41.9993, 87.3617, -1.90735e-06)
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, -2.46018e-05, -4.47042e-07, 2.45869e-05, 1, 4.47035e-08, -1.49019e-07, -1.12923e-08, 1, -0.349849, 1, 0)
 shape = SubResource("CapsuleShape3D_6fkpk")
 
-[node name="Skeleton3D" type="Skeleton3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0.000482775, 8.70495e-05, -0.000482658, 0.999999, -0.00134449, -8.76917e-05, 0.00134445, 0.999999, 0, 0, 0)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.685023, -0.103278, 0.721165, -0.0516205, 0.994294, 0.0933598, -0.726691, 0.0267266, -0.686444, 0.349813, 0.983757, 0)
+shape = SubResource("CapsuleShape3D_6fkpk")
+
+[node name="Skeleton3D" type="Skeleton3D" parent="."]
+transform = Transform3D(0.01, 4.82775e-06, 8.70427e-07, -4.82658e-06, 0.00999999, -1.34449e-05, -8.76917e-07, 1.34445e-05, 0.00999999, 0, 0, 0)
 bones/0/name = "mixamorigHips"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.995127, 0.0140971, -0.097586, 0.0351141, 0.874167, 0.484355, 0.0921345, -0.485421, 0.869412, 0.683282, 61.44, -22.9477)
@@ -441,82 +437,83 @@ bones/40/position = Vector3(-2.56864e-08, 6.08778, 6.58917e-10)
 bones/40/rotation = Quaternion(1.19942e-10, 8.61128e-17, 6.93889e-18, 1)
 bones/40/scale = Vector3(1, 1, 1)
 
-[node name="HumanoidBase_NotOverlapping" type="MeshInstance3D" parent="RigidBody3D/Skeleton3D"]
+[node name="HumanoidBase_NotOverlapping" type="MeshInstance3D" parent="Skeleton3D"]
 transform = Transform3D(1, -0.000482658, -8.76985e-05, 0.000482776, 0.999999, 0.00134445, 8.70427e-05, -0.00134449, 1, 0, 0, 0)
 mesh = ExtResource("1_dftq8")
 skin = SubResource("Skin_sbnu0")
 
-[node name="JiggleHead" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(0.99974, 0.0228034, -0.000729822, -0.0165245, 0.74578, 0.665987, 0.015731, -0.665802, 0.745963, 0.285104, 159.1, 0.581277)
+[node name="JiggleHead" type="Node3D" parent="Skeleton3D"]
+transform = Transform3D(0.00993427, 8.35991e-05, 0.00114164, -0.000226797, 0.00991933, 0.00124717, -0.001122, -0.00126486, 0.00985602, -0.218702, 1.24805, -0.903198)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigHead"
 stiffness = 0.1
-damping = 56.3
-use_gravity = true
 
-[node name="JiggleCenter" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(0.999499, 0.00399898, 0.0313909, 0.00149106, 0.98493, -0.172949, -0.0316094, 0.172909, 0.98443, 14.9933, 113.507, 2.33549)
-top_level = true
+[node name="JiggleCenter" type="Node3D" parent="Skeleton3D"]
+transform = Transform3D(99.9501, 0.350843, 3.1388, 0.193109, 98.5163, -17.161, -3.15244, 17.1585, 98.4664, 0, 0, 0)
 script = ExtResource("2_nl3gy")
 enabled = false
 bone_name = "mixamorigSpine"
 
-[node name="JiggleNeck" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(0.999758, 0.021959, -0.00115908, -0.0219506, 0.993462, -0.112036, -0.0013087, 0.112034, 0.993703, 0.115498, 151.563, -2.35226)
+[node name="JiggleNeck" type="Node3D" parent="Skeleton3D"]
+transform = Transform3D(0.00999758, 0.000219856, -1.16217e-05, -0.000219772, 0.00993445, -0.00112177, -1.31174e-05, 0.00112176, 0.00993687, 0.0439306, 2.48008, 0.195837)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigNeck"
 stiffness = 0.1
-damping = 31.1
 forward_axis = 1
 
-[node name="JiggleboneLeftArm" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(-0.0492224, 0.48349, -0.873965, -0.0271307, -0.87535, -0.482728, -0.998419, -4.97663e-05, 0.0562042, 16.8447, 145.083, -2.54288)
+[node name="JiggleboneLeftArm" type="Node3D" parent="Skeleton3D"]
+transform = Transform3D(-0.000492227, 0.00483491, -0.00873964, -0.000271308, -0.00875349, -0.00482729, -0.00998419, -4.98398e-07, 0.000562046, 0.168447, 0.46083, -0.0254289)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigLeftArm"
-stiffness = 10.6
-damping = 29.6
 use_gravity = true
 forward_axis = 1
 
-[node name="JiggleboneRightArm" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(-0.0500516, -0.479607, 0.876055, 0.0274139, -0.877483, -0.478823, 0.99837, 5.01361e-05, 0.0570674, -16.7043, 145.099, -2.61629)
+[node name="JiggleboneRightArm" type="Node3D" parent="Skeleton3D"]
+transform = Transform3D(-0.000500515, -0.00479611, 0.00876053, 0.000274137, -0.00877481, -0.00478827, 0.0099837, 4.98258e-07, 0.000570673, -0.167043, 0.460992, -0.0261629)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigRightArm"
-stiffness = 10.6
-damping = 29.6
 use_gravity = true
 forward_axis = 1
 
-[node name="JiggleboneLeftForeArm2" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(-0.0545065, 0.249651, -0.966801, -0.0140263, -0.968336, -0.249257, -0.998415, -2.54986e-05, 0.0562821, 30.8054, 119.807, -2.54432)
+[node name="JiggleboneLeftForeArm2" type="Node3D" parent="Skeleton3D"]
+transform = Transform3D(-0.000545068, 0.0024965, -0.00966801, -0.000140257, -0.00968336, -0.00249256, -0.00998415, -2.60352e-07, 0.000562824, 0.308054, 0.208074, -0.0254432)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigLeftForeArm"
-stiffness = 22.7
-damping = 29.6
 use_gravity = true
 forward_axis = 1
 
-[node name="JiggleboneRightForeArm2" type="Node3D" parent="RigidBody3D/Skeleton3D"]
-transform = Transform3D(-0.0553547, -0.24751, 0.967303, 0.0141667, -0.968885, -0.247104, 0.998366, 2.50839e-05, 0.0571389, -30.5523, 119.763, -2.61485)
+[node name="JiggleboneRightForeArm2" type="Node3D" parent="Skeleton3D"]
+transform = Transform3D(-0.000553546, -0.00247506, 0.00967304, 0.000141669, -0.00968886, -0.002471, 0.00998366, 2.55812e-07, 0.000571386, -0.305524, 0.207631, -0.0261485)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigRightForeArm"
-stiffness = 23.7
-damping = 29.6
 use_gravity = true
 forward_axis = 1
 
-[node name="JoltPinJoint3D" type="JoltPinJoint3D" parent="RigidBody3D"]
-node_b = NodePath("..")
-enabled = false
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0421906, 93.6112, -0.104958)
+[node name="OldManContainer" type="Node3D" parent="." node_paths=PackedStringArray("jointContainer")]
+script = ExtResource("1_vimg0")
+jointContainer = NodePath("JointContainer")
 
-[node name="JoltPinJoint3D2" type="JoltPinJoint3D" parent="RigidBody3D"]
-node_b = NodePath("..")
+[node name="JointContainer" type="Node3D" parent="OldManContainer"]
+
+[node name="JoltPinJoint3D" type="JoltPinJoint3D" parent="OldManContainer/JointContainer"]
+node_b = NodePath("../../..")
 enabled = false
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0421906, 0.75074, -0.104958)
+
+[node name="JoltPinJoint3D2" type="JoltPinJoint3D" parent="OldManContainer/JointContainer"]
+node_b = NodePath("../../..")
+enabled = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0349284, 1.13599, -0.00136942)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04367, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_rdcc5")

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvcgxwfyqxxfw"]
+
+[ext_resource type="Script" path="res://scripts/grabbableObject.gd" id="1_takpa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_axu7p"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s06nm"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0pejc"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[node name="GrabbableCube" type="RigidBody3D" node_paths=PackedStringArray("rigidBodyToGrab")]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_takpa")
+rigidBodyToGrab = NodePath(".")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_axu7p")
+
+[node name="GrabableArea" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabableArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106812, 0, -0.00170898)
+shape = SubResource("BoxShape3D_s06nm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106812, 0, -0.00170898)
+shape = SubResource("BoxShape3D_0pejc")
