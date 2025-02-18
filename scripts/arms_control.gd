@@ -12,7 +12,18 @@ var handIsOpen := true
 
 var handInGrabbable := false
 
-var inGrabTimeWindow := false
+var inGrabTimeWindow : bool = false :
+	set(value):
+		if(handInGrabbable && handIsOpen && grabbableObject != null):
+			grabbableObject.set_freeze_enabled(true)
+			grabbableObject.reparent(grabAreaShape)
+			grabbableObject.isGrabbed = true
+			grabbableObject.gravity_scale = 0.0
+			collider.disabled = true
+		else:
+			grabbableObject.set_freeze_enabled(false)
+			grabbableObject.reparent(owner.owner)
+			grabbableObject.gravity_scale = 1.0
 
 var grabbableObject
 
@@ -25,13 +36,6 @@ func _physics_process(delta: float) -> void:
 		print("Camera position is " + str(camera.global_position))
 	
 	rayCastAtPlane()
-	
-	if(handInGrabbable && handIsOpen && grabbableObject != null):
-		
-		if(inGrabTimeWindow):
-			grabbableObject.global_position = grabAreaShape.global_position
-			grabbableObject.isGrabbed = true
-			collider.disabled = true
 			
 func rayCastAtPlane():
 	
@@ -57,22 +61,27 @@ func toggleHandOpen():
 			
 			animationPlayer.play("open_hand")
 			handIsOpen = true
-			if(handInGrabbable):
-				inGrabTimeWindow = true
 			
+			if(handInGrabbable):
+				
+				inGrabTimeWindow = true
 			
 		else:
 			
 			animationPlayer.play_backwards("open_hand")
 			handIsOpen = false
+			
 			if(handInGrabbable):
+				
 				inGrabTimeWindow = false
+				
 			collider.disabled = false
+			
 func toggleCollision():
-	if(collider.disabled == grabAreaShape.disabled):
-		collider.disabled = !collider.disabled
-		grabAreaShape.disabled = !grabAreaShape.disabled
-
+	#if(collider.disabled == grabAreaShape.disabled):
+	collider.disabled = !collider.disabled
+	grabAreaShape.disabled = !grabAreaShape.disabled
+	
 func _on_grab_area_area_entered(area: Area3D) -> void:
 	
 	if(area.owner.get_script().get_global_name() == "Grabbable"):

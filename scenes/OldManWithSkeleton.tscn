@@ -6,8 +6,6 @@
 [ext_resource type="Script" path="res://addons/jigglebones/jigglebone.gd" id="2_nl3gy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gnm1n"]
-friction = 0.0
-bounce = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6fkpk"]
 radius = 0.10106
@@ -120,8 +118,8 @@ bind/33/bone = -1
 bind/33/pose = Transform3D(0.627911, -0.0470949, 0.776859, -0.358157, -0.90368, 0.234704, 0.690978, -0.425611, -0.584298, 46.4703, 70.3225, 96.4197)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rdcc5"]
-radius = 0.644621
-height = 1.322
+radius = 0.188848
+height = 1.57026
 
 [node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("rigidBodyToGrab")]
 collision_layer = 3
@@ -443,7 +441,7 @@ mesh = ExtResource("1_dftq8")
 skin = SubResource("Skin_sbnu0")
 
 [node name="JiggleHead" type="Node3D" parent="Skeleton3D"]
-transform = Transform3D(0.00993427, 8.35991e-05, 0.00114164, -0.000226797, 0.00991933, 0.00124717, -0.001122, -0.00126486, 0.00985602, -0.218702, 1.24805, -0.903198)
+transform = Transform3D(0.00993427, 8.3597e-05, 0.00114164, -0.000226798, 0.00991933, 0.00124719, -0.00112201, -0.00126488, 0.00985602, -0.218703, 1.24805, -0.903197)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigHead"
@@ -456,7 +454,7 @@ enabled = false
 bone_name = "mixamorigSpine"
 
 [node name="JiggleNeck" type="Node3D" parent="Skeleton3D"]
-transform = Transform3D(0.00999758, 0.000219856, -1.16217e-05, -0.000219772, 0.00993445, -0.00112177, -1.31174e-05, 0.00112176, 0.00993687, 0.0439306, 2.48008, 0.195837)
+transform = Transform3D(0.00999758, 0.000219856, -1.16217e-05, -0.000219771, 0.00993445, -0.00112177, -1.31173e-05, 0.00112176, 0.00993687, 0.0439305, 2.48008, 0.195837)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigNeck"
@@ -464,7 +462,7 @@ stiffness = 0.1
 forward_axis = 1
 
 [node name="JiggleboneLeftArm" type="Node3D" parent="Skeleton3D"]
-transform = Transform3D(-0.000492227, 0.00483491, -0.00873964, -0.000271308, -0.00875349, -0.00482729, -0.00998419, -4.98398e-07, 0.000562046, 0.168447, 0.46083, -0.0254289)
+transform = Transform3D(-0.000492227, 0.00483491, -0.00873964, -0.000271308, -0.00875349, -0.00482729, -0.00998419, -4.98398e-07, 0.000562046, 0.168447, 0.46083, -0.0254288)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigLeftArm"
@@ -472,7 +470,7 @@ use_gravity = true
 forward_axis = 1
 
 [node name="JiggleboneRightArm" type="Node3D" parent="Skeleton3D"]
-transform = Transform3D(-0.000500515, -0.00479611, 0.00876053, 0.000274137, -0.00877481, -0.00478827, 0.0099837, 4.98258e-07, 0.000570673, -0.167043, 0.460992, -0.0261629)
+transform = Transform3D(-0.000500515, -0.00479611, 0.00876053, 0.000274137, -0.00877481, -0.00478827, 0.0099837, 4.98109e-07, 0.000570672, -0.167043, 0.460992, -0.0261629)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigRightArm"
@@ -480,7 +478,7 @@ use_gravity = true
 forward_axis = 1
 
 [node name="JiggleboneLeftForeArm2" type="Node3D" parent="Skeleton3D"]
-transform = Transform3D(-0.000545068, 0.0024965, -0.00966801, -0.000140257, -0.00968336, -0.00249256, -0.00998415, -2.60352e-07, 0.000562824, 0.308054, 0.208074, -0.0254432)
+transform = Transform3D(-0.000545067, 0.0024965, -0.00966801, -0.000140257, -0.00968336, -0.00249256, -0.00998415, -2.60574e-07, 0.000562824, 0.308054, 0.208074, -0.0254432)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigLeftForeArm"
@@ -488,7 +486,7 @@ use_gravity = true
 forward_axis = 1
 
 [node name="JiggleboneRightForeArm2" type="Node3D" parent="Skeleton3D"]
-transform = Transform3D(-0.000553546, -0.00247506, 0.00967304, 0.000141669, -0.00968886, -0.002471, 0.00998366, 2.55812e-07, 0.000571386, -0.305524, 0.207631, -0.0261485)
+transform = Transform3D(-0.000553546, -0.00247506, 0.00967304, 0.000141669, -0.00968886, -0.002471, 0.00998366, 2.55738e-07, 0.000571386, -0.305524, 0.207631, -0.0261485)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorigRightForeArm"

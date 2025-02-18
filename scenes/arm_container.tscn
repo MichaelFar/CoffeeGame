@@ -389,12 +389,12 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1662l"]
-radius = 3.0
-height = 8.0
+radius = 1.73521
+height = 6.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8rpp7"]
-radius = 1.86426
-height = 3.7287
+radius = 1.5126
+height = 5.40686
 
 [node name="ArmContainer" type="Node3D" node_paths=PackedStringArray("animationPlayer", "collider", "grabAreaShape")]
 transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
@@ -730,7 +730,7 @@ mesh = SubResource("ArrayMesh_hcym7")
 skin = SubResource("Skin_ledou")
 
 [node name="Jigglebone" type="Node3D" parent="Skeleton3D"]
-transform = Transform3D(-0.068907, 0.00221753, -0.0724355, -0.0529888, 0.0666439, 0.0524479, 0.0494369, 0.0745229, -0.0447473, -0.989102, -0.506064, 0.451972)
+transform = Transform3D(-0.0999894, 0.00087704, -0.00116178, -0.000265219, 0.067499, 0.0737822, 0.00143129, 0.0737774, -0.0674895, -0.00370311, 0.238972, -0.274466)
 top_level = true
 script = ExtResource("3_s8i5w")
 bone_name = "LowArm.L"
@@ -748,11 +748,11 @@ bone = "LowArm.L"
 keepAngle = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/GrabArea"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, -1.06581e-14, 4.37114e-08, 1, -4.37114e-08, 0.800432, -0.473904, 1.1968e-06)
+transform = Transform3D(0.25, -0.866025, 0.433013, 0.433013, 0.5, 0.75, -0.866026, -1.17329e-07, 0.5, 0.800432, -0.473904, -0.741757)
 shape = SubResource("CapsuleShape3D_1662l")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 1.62838e-15, -5.30246e-08, 3.72529e-08, 1, -3.72529e-08, 1.57717e-08, -3.72529e-08, 1, -11.1077, 1.85598, 1.10513e-07)
+transform = Transform3D(0.5, -0.866025, -1.6106e-08, 0.866025, 0.5, -2.66919e-08, -6.08402e-09, -7.51081e-08, 1, -10.0516, 0.696699, 1.17742)
 shape = SubResource("CapsuleShape3D_8rpp7")
 
 [connection signal="area_entered" from="CharacterBody3D/GrabArea" to="." method="_on_grab_area_area_entered"]
