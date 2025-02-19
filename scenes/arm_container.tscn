@@ -730,7 +730,7 @@ mesh = SubResource("ArrayMesh_hcym7")
 skin = SubResource("Skin_ledou")
 
 [node name="Jigglebone" type="Node3D" parent="Skeleton3D"]
-transform = Transform3D(-0.0999894, 0.00087704, -0.00116178, -0.000265219, 0.067499, 0.0737822, 0.00143129, 0.0737774, -0.0674895, -0.00370311, 0.238972, -0.274466)
+transform = Transform3D(-0.0999894, 0.000877039, -0.00116177, -0.000265216, 0.0674991, 0.0737821, 0.00143128, 0.0737774, -0.0674896, -0.00370311, 0.238972, -0.274466)
 top_level = true
 script = ExtResource("3_s8i5w")
 bone_name = "LowArm.L"
@@ -745,7 +745,6 @@ collision_mask = 2
 script = ExtResource("4_y6e3j")
 skeleton = NodePath("../../Skeleton3D")
 bone = "LowArm.L"
-keepAngle = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/GrabArea"]
 transform = Transform3D(0.25, -0.866025, 0.433013, 0.433013, 0.5, 0.75, -0.866026, -1.17329e-07, 0.5, 0.800432, -0.473904, -0.741757)

@@ -8,13 +8,13 @@ extends Node3D
 
 @export var grabAreaShape : CollisionShape3D
 
-var handIsOpen := true
+var handIsClosed := true
 
 var handInGrabbable := false
 
 var inGrabTimeWindow : bool = false :
 	set(value):
-		if(handInGrabbable && handIsOpen && grabbableObject != null):
+		if(handInGrabbable && handIsClosed&& grabbableObject != null):
 			grabbableObject.set_freeze_enabled(true)
 			grabbableObject.reparent(grabAreaShape)
 			grabbableObject.isGrabbed = true
@@ -57,10 +57,10 @@ func rayCastAtPlane():
 
 func toggleHandOpen():
 	if(visible):
-		if(!handIsOpen):
+		if(!handIsClosed):
 			
 			animationPlayer.play("open_hand")
-			handIsOpen = true
+			handIsClosed = true
 			
 			if(handInGrabbable):
 				
@@ -69,11 +69,17 @@ func toggleHandOpen():
 		else:
 			
 			animationPlayer.play_backwards("open_hand")
-			handIsOpen = false
+			handIsClosed = false
 			
 			if(handInGrabbable):
 				
 				inGrabTimeWindow = false
+				
+			if(grabbableObject != null):
+				
+				grabbableObject.set_freeze_enabled(false)
+				grabbableObject.reparent(owner.owner)
+				grabbableObject.gravity_scale = 1.0
 				
 			collider.disabled = false
 			
