@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=4 uid="uid://cq4xata7413le"]
 
 [ext_resource type="Script" path="res://scripts/customer_controller.gd" id="1_vimg0"]
-[ext_resource type="Script" path="res://scripts/grabbableObject.gd" id="2_7ogo7"]
+[ext_resource type="Script" path="res://scripts/old_man_grabbable.gd" id="1_wtun4"]
 [ext_resource type="Script" path="res://addons/jigglebones/jigglebone.gd" id="2_nl3gy"]
 [ext_resource type="Texture2D" uid="uid://d4b7d8tnse5yi" path="res://models/oldMan_oldManBlender_albedo.png" id="3_177xw"]
 [ext_resource type="Script" path="res://scripts/attach_to_bone.gd" id="5_k2geg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jilmu"]
 friction = 0.0
-bounce = 1.0
+bounce = 0.26
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xm1wy"]
 resource_name = "Material.001"
@@ -156,13 +156,16 @@ height = 0.44589
 radius = 0.0652556
 height = 0.44589
 
-[node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("rigidBodyToGrab")]
-collision_layer = 0
+[node name="OldManRigidBody" type="RigidBody3D" node_paths=PackedStringArray("oldManContainer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0581474, 0, -0.108215)
+collision_layer = 2
 collision_mask = 3
+axis_lock_angular_x = true
 axis_lock_angular_y = true
+axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_jilmu")
-script = ExtResource("2_7ogo7")
-rigidBodyToGrab = NodePath(".")
+script = ExtResource("1_wtun4")
+oldManContainer = NodePath("OldManContainer")
 
 [node name="OldManContainer" type="Node3D" parent="." node_paths=PackedStringArray("jointContainer")]
 script = ExtResource("1_vimg0")
@@ -172,12 +175,10 @@ jointContainer = NodePath("JointContainer")
 
 [node name="JoltPinJoint3D" type="JoltPinJoint3D" parent="OldManContainer/JointContainer"]
 node_b = NodePath("../../..")
-enabled = false
 
 [node name="JoltPinJoint3D2" type="JoltPinJoint3D" parent="OldManContainer/JointContainer"]
 node_b = NodePath("../../..")
-enabled = false
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0349284, 1.13599, -0.00136942)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0300015, 0.881312, -0.00136942)
 
 [node name="Skeleton3D2" type="Skeleton3D" parent="OldManContainer"]
 bones/0/name = "mixamorig_Hips"
@@ -473,20 +474,14 @@ mesh = SubResource("ArrayMesh_hg8fu")
 skin = SubResource("Skin_pl2qn")
 
 [node name="JiggleHead" type="Node3D" parent="OldManContainer/Skeleton3D2"]
-transform = Transform3D(1, 0.000149398, -0.000254087, -0.000149292, 1, 0.000415682, 0.000254149, -0.000415644, 1, 0.00232039, 1.60821, -0.988837)
+transform = Transform3D(0.996246, 0.059965, 0.0624284, -0.0687496, 0.986338, 0.149705, -0.0525984, -0.153435, 0.986758, -0.171832, 1.31795, -1.04703)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorig_Head"
 stiffness = 0.1
 
-[node name="JiggleCenter" type="Node3D" parent="OldManContainer/Skeleton3D2"]
-transform = Transform3D(99.9499, 0.399898, 3.13909, 0.149106, 98.493, -17.2949, -3.16094, 17.2909, 98.443, 0, 0, 0)
-script = ExtResource("2_nl3gy")
-enabled = false
-bone_name = "mixamorig_Spine"
-
 [node name="JiggleNeck" type="Node3D" parent="OldManContainer/Skeleton3D2"]
-transform = Transform3D(1, 0.000149368, -9.85279e-08, -0.000149368, 1, 0.000186712, 1.26417e-07, -0.000186711, 1, 0.0023042, 2.50065, -0.0112243)
+transform = Transform3D(0.998628, 0.0523695, 0.000551252, -0.0523696, 0.998628, 0.000147698, -0.000542761, -0.000176364, 1, 0.0487351, 2.49517, -0.119777)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorig_Neck"
@@ -494,7 +489,7 @@ stiffness = 0.1
 forward_axis = 1
 
 [node name="JiggleboneLeftArm" type="Node3D" parent="OldManContainer/Skeleton3D2"]
-transform = Transform3D(-0.059798, 0.483835, -0.873114, -0.0212764, -0.875098, -0.483478, -0.997984, -0.0103342, 0.0626233, 0.166393, 0.445501, -0.0106696)
+transform = Transform3D(-0.0606118, 0.483846, -0.873052, -0.0212677, -0.875087, -0.483498, -0.997935, -0.0107379, 0.0633308, 0.108271, 0.445501, -0.119041)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorig_LeftArm"
@@ -502,7 +497,7 @@ use_gravity = true
 forward_axis = 1
 
 [node name="JiggleboneRightArm" type="Node3D" parent="OldManContainer/Skeleton3D2"]
-transform = Transform3D(-0.0621915, -0.483831, 0.872949, 0.022241, -0.875096, -0.483437, 0.997816, -0.0106504, 0.0651845, -0.161785, 0.445501, -0.0117789)
+transform = Transform3D(-0.0613883, -0.48382, 0.873012, 0.0222403, -0.875107, -0.483417, 0.997866, -0.0102601, 0.0644816, -0.219907, 0.445501, -0.119861)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorig_RightArm"
@@ -510,7 +505,7 @@ use_gravity = true
 forward_axis = 1
 
 [node name="JiggleboneLeftForeArm2" type="Node3D" parent="OldManContainer/Skeleton3D2"]
-transform = Transform3D(-0.0568132, 0.24772, -0.967164, -0.0209933, -0.968811, -0.246909, -0.998164, 0.00627629, 0.0602417, 0.313805, 0.178882, -0.0138182)
+transform = Transform3D(-0.0576332, 0.247796, -0.967097, -0.0209613, -0.968794, -0.246981, -0.998118, 0.00603732, 0.0610288, 0.255766, 0.178886, -0.122352)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorig_LeftForeArm"
@@ -518,12 +513,18 @@ use_gravity = true
 forward_axis = 1
 
 [node name="JiggleboneRightForeArm2" type="Node3D" parent="OldManContainer/Skeleton3D2"]
-transform = Transform3D(-0.0560167, -0.247726, 0.967209, 0.0262703, -0.96876, -0.246602, 0.998084, 0.0115951, 0.0607745, -0.309196, 0.17888, -0.0150238)
+transform = Transform3D(-0.0552152, -0.247646, 0.967276, 0.0262647, -0.968779, -0.246532, 0.998129, 0.0117928, 0.0599958, -0.367235, 0.178876, -0.122992)
 top_level = true
 script = ExtResource("2_nl3gy")
 bone_name = "mixamorig_RightForeArm"
 use_gravity = true
 forward_axis = 1
+
+[node name="Jigglebone" type="Node3D" parent="OldManContainer/Skeleton3D2"]
+transform = Transform3D(1, 5.86861e-11, 0.000806161, -1.85223e-10, 1, 1.56963e-07, -0.000806161, -1.56963e-07, 1, -0.0566734, 1.01201, -1.09599)
+top_level = true
+script = ExtResource("2_nl3gy")
+bone_name = "mixamorig_Hips"
 
 [node name="Area3D" type="Area3D" parent="OldManContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04367, 0)

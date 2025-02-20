@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://q0m7un1ey8wn"]
+[gd_scene load_steps=18 format=3 uid="uid://q0m7un1ey8wn"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://scenes/proto_controller.tscn" id="1_kx6oj"]
 [ext_resource type="Material" uid="uid://bj3kxhr6qvcxl" path="res://textures/WoodFloorMaterial.tres" id="2_ev1aj"]
 [ext_resource type="PackedScene" uid="uid://cq4xata7413le" path="res://scenes/OldManWithSkeleton.tscn" id="3_864by"]
+[ext_resource type="PackedScene" uid="uid://cvcgxwfyqxxfw" path="res://scenes/grabbable_cube.tscn" id="4_ax1ck"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xv7ec"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -38,12 +39,19 @@ data = PackedVector3Array(-10, 5, 0.5, 10, 5, 0.5, -10, -5, 0.5, 10, 5, 0.5, 10,
 [sub_resource type="PlaneMesh" id="PlaneMesh_6l002"]
 size = Vector2(50, 50)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnsal"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8vvj"]
 albedo_color = Color(0.834152, 0.999999, 0.468914, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_yhi52"]
-material = SubResource("StandardMaterial3D_rnsal")
+material = SubResource("StandardMaterial3D_t8vvj")
 size = Vector3(20, 10, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_bjvlk"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 7.58001, 0.222302, -1.42232, 0, 0, 0, 0, 0, 0, 4.72739, 0.183811, -1.4777, 0, 0, 0, 0, 0, 0, 2.7991, 0.194443, -1.49048, 0, 0, 0, 0, 0, 0, 1.51792, 0.216549, -1.49661, 0, 0, 0, 0, 0, 0, 0.614423, 0.175396, -1.47697, 0, 0, 0, 0, 0, 0, 0.325466, 0.197898, -1.43992, 0, 0, 0, 0, 0, 0, 0.114069, 0.197899, -1.41808, 0, 0, 0, 0, 0, 0, -0.111085, 0.118905, -1.07298, 0, 0, 0, 0, 0, 0, -0.162227, 0.115545, -0.605864, 0, 0, 0, 0, 0, 0, -0.177314, 0.0961137, -0.348604, 0, 0, 0, 0, 0, 0, -0.185008, 0.13746, 0.405636, 0, 0, 0, 0, 0, 0, -0.137618, 0.163388, 0.999226, 0, 0, 0, 0, 0, 0, -0.102288, 0.11998, 1.2755, 0, 0, 0, 0, 0, 0, -0.0919504, 0.160048, 1.54504, 0, 0, 0, 0, 0, 0, -0.0703958, 0.184117, 2.62035, 0, 0, 0, 0, 0, 0, -0.0393943, 0.161744, 3.88289, 0, 0, 0, 0, 0, 0, -0.105926, 0.154699, 4.96707, 0, 0, 0, 0, 0, 0, -0.0670801, 0.125418, 5.79497, 0, 0, 0, 0, 0, 0, -0.0056448, 0.104244, 7.26075),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 19
 
 [node name="test_cafe_scene" type="Node3D"]
 
@@ -117,9 +125,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.555
 mesh = SubResource("BoxMesh_yhi52")
 skeleton = NodePath("../..")
 
-[node name="RigidBody3D" parent="." instance=ExtResource("3_864by")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
-
 [node name="RigidBody3D2" parent="." instance=ExtResource("3_864by")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
 
@@ -140,3 +145,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
 
 [node name="RigidBody3D8" parent="." instance=ExtResource("3_864by")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
+
+[node name="GrabbableCube" parent="." instance=ExtResource("4_ax1ck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -1)
+
+[node name="GrabbableCube2" parent="." instance=ExtResource("4_ax1ck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.77575, 1.09178, 0.0491445)
+
+[node name="GrabbableCube3" parent="." instance=ExtResource("4_ax1ck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.77575, 1.09178, 1.26529)
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.06437)
+curve = SubResource("Curve3D_bjvlk")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(0.0194094, 0, 0.999764, 0, 0.999992, 0, -0.999779, 0, 0.0194091, 7.58001, 0.222302, -1.42232)
+rotation_mode = 1
+
+[node name="RigidBody3D" parent="Path3D/PathFollow3D" instance=ExtResource("3_864by")]
+transform = Transform3D(-0.990188, -4.44831e-08, -0.139758, -0.0135126, 0.99532, 0.095733, 0.139103, 0.0966824, -0.985547, 0, 0, 0)

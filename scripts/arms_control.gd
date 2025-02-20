@@ -12,18 +12,28 @@ var handIsClosed := true
 
 var handInGrabbable := false
 
+var grabbedObject : Grabbable
+
 var inGrabTimeWindow : bool = false :
+	
 	set(value):
-		if(handInGrabbable && handIsClosed&& grabbableObject != null):
-			grabbableObject.set_freeze_enabled(true)
-			grabbableObject.reparent(grabAreaShape)
-			grabbableObject.isGrabbed = true
-			grabbableObject.gravity_scale = 0.0
+		
+		if(handInGrabbable && handIsClosed && grabbableObject != null):
+			
+			print("Grabbing Object")
+			grabbedObject = grabbableObject
+			grabbedObject.grabParent = grabAreaShape
+			grabbedObject.grabBehavior()
 			collider.disabled = true
+			
 		else:
-			grabbableObject.set_freeze_enabled(false)
-			grabbableObject.reparent(owner.owner)
-			grabbableObject.gravity_scale = 1.0
+			
+			if(grabbedObject != null):
+				
+				grabbedObject.ungrabBehavior()
+				
+			grabbedObject = null
+			
 
 var grabbableObject
 
@@ -84,23 +94,28 @@ func toggleHandOpen():
 			collider.disabled = false
 			
 func toggleCollision():
-	#if(collider.disabled == grabAreaShape.disabled):
-	collider.disabled = !collider.disabled
+	if(collider.disabled == grabAreaShape.disabled):
+		collider.disabled = !collider.disabled
 	grabAreaShape.disabled = !grabAreaShape.disabled
 	
 func _on_grab_area_area_entered(area: Area3D) -> void:
 	
-	if(area.owner.get_script().get_global_name() == "Grabbable"):
+	if(area.owner is Grabbable):
 		
 		grabbableObject = area.owner
+		
 		if(grabbableObject.enabled):
+		
 			handInGrabbable = true
-			
-
-
+		
 func _on_grab_area_area_exited(area: Area3D) -> void:
-	if(area.owner.get_script().get_global_name() == "Grabbable"):
+	
+	if(area.owner is Grabbable):
+	
+		if(grabbedObject != null):
+	
+			return
+	
 		handInGrabbable = false
-		if(grabbableObject != null):
-			grabbableObject.isGrabbed = false
+		
 		grabbableObject = null

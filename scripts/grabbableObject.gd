@@ -4,6 +4,7 @@ class_name Grabbable
 
 var enabled := true
 
+var grabParent : Node3D
 @export var rigidBodyToGrab : RigidBody3D
 
 var isGrabbed : bool = false :
@@ -20,4 +21,13 @@ var isGrabbed : bool = false :
 			#axis_lock_angular_y = false
 			#axis_lock_angular_z = false
 			
-		
+func grabBehavior():
+	set_freeze_enabled(true)
+	self.reparent(grabParent)
+	isGrabbed = true
+	gravity_scale = 0.0
+
+func ungrabBehavior():
+	set_freeze_enabled(false)
+	reparent(owner)
+	gravity_scale = 1.0
