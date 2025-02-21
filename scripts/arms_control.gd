@@ -8,6 +8,14 @@ extends Node3D
 
 @export var grabAreaShape : CollisionShape3D
 
+@export var rayCast : RayCast3D
+
+@export var rotationRoot : Node3D
+
+@export var rotationCoefficient : float = 2.0
+
+@export_flags_3d_physics var rayCastArmLayer
+
 var handIsClosed := true
 
 var handInGrabbable := false
@@ -33,8 +41,7 @@ var inGrabTimeWindow : bool = false :
 				grabbedObject.ungrabBehavior()
 				
 			grabbedObject = null
-			
-
+		
 var grabbableObject
 
 func _physics_process(delta: float) -> void:
@@ -50,11 +57,12 @@ func _physics_process(delta: float) -> void:
 func rayCastAtPlane():
 	
 	var mouse_pos = get_viewport().get_mouse_position()
-	var ray_length = 500
+	var ray_length = 10
 	var from = camera.project_ray_origin(mouse_pos)
 	var to = from + camera.project_ray_normal(mouse_pos) * ray_length
 	var space = get_world_3d().direct_space_state
 	var ray_query = PhysicsRayQueryParameters3D.new()
+	ray_query.collision_mask = rayCastArmLayer
 	ray_query.from = from
 	ray_query.to = to
 	ray_query.collide_with_areas = true
@@ -66,7 +74,9 @@ func rayCastAtPlane():
 		global_position = raycast_result.position#Vector3(raycast_result.position.x,clamp(raycast_result.position.y, 0, camera.position.y + (camera.position.y / 3)),raycast_result.position.z - 3)
 
 func toggleHandOpen():
+	
 	if(visible):
+		
 		if(!handIsClosed):
 			
 			animationPlayer.play("open_hand")
@@ -92,10 +102,24 @@ func toggleHandOpen():
 				grabbableObject.gravity_scale = 1.0
 				
 			collider.disabled = false
-			
+
+func _unhandled_input(event: InputEvent) -> void:
+	
+	if(event.is_action_pressed("rotate_left")):
+		
+		rotationRoot.rotate_object_local(Vector3(1,0,0), rotationCoefficient * 0.0174533)
+		
+	if(event.is_action_pressed("rotate_right")):
+		
+		rotationRoot.rotate_object_local(Vector3(1,0,0), rotationCoefficient * -0.0174533)
+		
+		
 func toggleCollision():
+	
 	if(collider.disabled == grabAreaShape.disabled):
+		
 		collider.disabled = !collider.disabled
+		
 	grabAreaShape.disabled = !grabAreaShape.disabled
 	
 func _on_grab_area_area_entered(area: Area3D) -> void:

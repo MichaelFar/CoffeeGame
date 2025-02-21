@@ -1,0 +1,3 @@
+extends Grabbable
+
+class_name VegetableSeedGrabbable

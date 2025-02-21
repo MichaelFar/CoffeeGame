@@ -11,11 +11,9 @@ func grabbableBehavior():
 	isGrabbed = true
 	gravity_scale = 0.0
 	
-
 func ungrabBehavior():
 	#oldManContainer.pinJoints()
 	set_freeze_enabled(false)
 	reparent(owner)
 	gravity_scale = 1.0
-	
 	

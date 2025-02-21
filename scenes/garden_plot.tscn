@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cr2xj4q4d34u8"]
+
+[ext_resource type="Script" path="res://scripts/garden_plot.gd" id="1_xo4bw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5jya"]
+albedo_color = Color(0.233437, 0.0726134, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sogdi"]
+material = SubResource("StandardMaterial3D_c5jya")
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wrsfl"]
+size = Vector3(2.02283, 0.209869, 2.05444)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ncbwt"]
+size = Vector3(1.96887, 0.106384, 2.02551)
+
+[node name="garden_plot_grab" type="RigidBody3D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_xo4bw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_sogdi")
+
+[node name="GrabableArea" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="GrabableArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00860596, -0.00917053, 0.0142822)
+shape = SubResource("BoxShape3D_wrsfl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00933838, -0.00253296, -0.00140381)
+shape = SubResource("BoxShape3D_ncbwt")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391358, 0)
+billboard = 1
+text = "Water Level:"

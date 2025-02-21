@@ -180,6 +180,7 @@ func toggleDisableAndHideHand():
 		
 		hand.grabbedObject.ungrabBehavior()
 		hand.grabbedObject = null
+		
 	hand.toggleCollision()
 
 ## Checks if some Input Actions haven't been created.

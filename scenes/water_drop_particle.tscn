@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0wl1g6wkhqtm"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kw24r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uw5q0"]
+transparency = 1
+albedo_color = Color(0.25098, 0.266667, 1, 0.0745098)
+
+[sub_resource type="SphereMesh" id="SphereMesh_atwax"]
+material = SubResource("StandardMaterial3D_uw5q0")
+radius = 0.1
+height = 0.1
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_kw24r")
+draw_pass_1 = SubResource("SphereMesh_atwax")

@@ -1,9 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://q0m7un1ey8wn"]
+[gd_scene load_steps=21 format=3 uid="uid://q0m7un1ey8wn"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://scenes/proto_controller.tscn" id="1_kx6oj"]
 [ext_resource type="Material" uid="uid://bj3kxhr6qvcxl" path="res://textures/WoodFloorMaterial.tres" id="2_ev1aj"]
 [ext_resource type="PackedScene" uid="uid://cq4xata7413le" path="res://scenes/OldManWithSkeleton.tscn" id="3_864by"]
 [ext_resource type="PackedScene" uid="uid://cvcgxwfyqxxfw" path="res://scenes/grabbable_cube.tscn" id="4_ax1ck"]
+[ext_resource type="PackedScene" uid="uid://ciih6xwfumv0i" path="res://scenes/water_container.tscn" id="5_27hlt"]
+[ext_resource type="PackedScene" uid="uid://cr2xj4q4d34u8" path="res://scenes/garden_plot.tscn" id="6_36uue"]
+[ext_resource type="PackedScene" uid="uid://cxd5sj5mb04k7" path="res://scenes/vegetable_seed_base.tscn" id="7_rn0j0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xv7ec"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -125,27 +128,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.555
 mesh = SubResource("BoxMesh_yhi52")
 skeleton = NodePath("../..")
 
-[node name="RigidBody3D2" parent="." instance=ExtResource("3_864by")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
-
-[node name="RigidBody3D3" parent="." instance=ExtResource("3_864by")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
-
-[node name="RigidBody3D4" parent="." instance=ExtResource("3_864by")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 3)
-
-[node name="RigidBody3D5" parent="." instance=ExtResource("3_864by")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 4)
-
-[node name="RigidBody3D6" parent="." instance=ExtResource("3_864by")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -4)
-
-[node name="RigidBody3D7" parent="." instance=ExtResource("3_864by")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
-
-[node name="RigidBody3D8" parent="." instance=ExtResource("3_864by")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
-
 [node name="GrabbableCube" parent="." instance=ExtResource("4_ax1ck")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -1)
 
@@ -160,8 +142,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.06437)
 curve = SubResource("Curve3D_bjvlk")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.0194094, 0, 0.999764, 0, 0.999992, 0, -0.999779, 0, 0.0194091, 7.58001, 0.222302, -1.42232)
+transform = Transform3D(0.0194094, 0, 0.999763, 0, 0.999992, 0, -0.999778, 0, 0.0194091, 7.58001, 0.222302, -1.42232)
 rotation_mode = 1
 
 [node name="RigidBody3D" parent="Path3D/PathFollow3D" instance=ExtResource("3_864by")]
 transform = Transform3D(-0.990188, -4.44831e-08, -0.139758, -0.0135126, 0.99532, 0.095733, 0.139103, 0.0966824, -0.985547, 0, 0, 0)
+
+[node name="WaterContainer" parent="." instance=ExtResource("5_27hlt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.783335, -3)
+
+[node name="GrabbableCube4" parent="." instance=ExtResource("6_36uue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.685723, -3)
+
+[node name="vegetable_seed_base" parent="." instance=ExtResource("7_rn0j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.24131, 0.97831, -1.47671)
